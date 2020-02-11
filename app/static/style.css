@@ -1,0 +1,41 @@
+body {
+  background-color: #e91e63;
+  color: white;
+  font-family: 'Source Code Pro', monospace;
+}
+h1 {
+  font-weight: bold !important;
+}
+#SPREE {
+  text-decoration: none !important;
+  font-weight: bolder !important;
+  color: white !important;
+  font-size: 40px !important;
+  margin-left: 20px;
+}
+#shirts {
+  text-decoration: none !important;
+  color: white !important;
+  font-family: 'Waiting for the Sunrise' !important;
+  font-size: 23px !important;
+  margin-left: 4px;
+}
+#storee {
+  text-decoration: none !important;
+  color: white !important;
+  font-family: 'Waiting for the Sunrise' !important;
+  font-size: 23px !important;
+  margin-left: 20px;
+}
+nav {
+  display: block !important;
+  background-color: #e91e63;
+}
+#ribbed-cardigan {
+  margin-left: 210px;
+  image-resolution: from-image;
+}
+div {
+  font-size: 20px;
+  color: black !important;
+}
