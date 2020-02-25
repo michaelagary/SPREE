@@ -9,10 +9,9 @@
       <nav class="w3-bar w3-black">
         <a id = "home" href="/index" class="w3-button w3-bar-item"> home</a>
         <a id = "store" href="/store" class="w3-button w3-bar-item"> store</a>
-        <a id = "<3" href="/favorites" class="w3-button w3-bar-item"> favorites</a>
         <a id = "login" href="/login" class="w3-button w3-bar-item"> login</a>
-        <a id = "administrator" href="/administrator" class="w3-button w3-bar-item"> administrator</a>
-        <a id = "requests" href="/requests" class="w3-button w3-bar-item"> requests</a>
+        <a id = "admin" href="/admin" class="w3-button w3-bar-item"> administrator</a>
+        {% if session %} <a id = "/profile" href="/profile" class="w3-button w3-bar-item"> profile</a> {% endif %}
       </nav>
       <h2>Browse all items now!</h2>
       <a href="/cardigan">
@@ -30,5 +29,7 @@
     <a href="/puff-sleved">
       <img src="https://lp2.hm.com/hmgoepprod?set=source[/34/bc/34bcbf3136f65da6b4935f0cf72da3f33b2bfaab.jpg],origin[dam],category[ladies_tops_longsleeve],type[DESCRIPTIVESTILLLIFE],res[w],hmver[1]&call=url[file:/product/main]" alt="puff-sleved ribbed top" width="200" height="200">
     </a>
+    <br>
+    {{ message }}
     </body>
 </html>

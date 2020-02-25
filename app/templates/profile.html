@@ -6,19 +6,27 @@
       <link href="https://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise&display=swap" rel="stylesheet">
     </head>
     <body>
-      <nav class="w3-bar w3-black">
+      <!-- <nav class="w3-bar w3-black">
         <a id = "home" href="/index" class="w3-button w3-bar-item"> home</a>
         <a id = "store" href="/store" class="w3-button w3-bar-item"> store</a>
         <a id = "login" href="/login" class="w3-button w3-bar-item"> login</a>
         <a id = "admin" href="/admin" class="w3-button w3-bar-item"> administrator</a>
         {% if session %} <a id = "/profile" href="/profile" class="w3-button w3-bar-item"> profile</a> {% endif %}
-      </nav>
-      <h1>Welcome to SPREE!</h1>
-      <h2>SPREE is a web app which displays clothing items and allows you to
-        filter by brand and sort by least to most expensive!</h2>
+      </nav> -->
+      <nav class="w3-bar w3-black">
+        <a id = "home" href="/index" class="w3-button w3-bar-item"> home</a>
+        <a id = "store" href="/store" class="w3-button w3-bar-item"> store</a>
+        <a id = "login" href="/login" class="w3-button w3-bar-item"> login</a>
+        <a id = "admin" href="/admin" class="w3-button w3-bar-item"> administrator</a> </nav>
+      <h1>Profile</h1>
+      <h2>You can view your favorites and requests here. </h2>
         <!-- {% if session %}
           <p> you are logged in </p>
-          <button type="button" href="/logout" > logout</button>
         {% endif %} -->
+        {% if session %}
+          <p> you are logged in with {{session['username']}} </p>
+          <button type="button"><a href="/logout">logout</a></button>
+        {% endif %}
+        <!-- this page will display favorites and requests -->
     </body>
 </html>
