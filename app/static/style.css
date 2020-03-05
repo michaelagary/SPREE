@@ -31,7 +31,7 @@ nav {
   display: block !important;
   background-color: #e91e63;
 }
-#ribbed-cardigan {
+img {
   margin-left: 210px;
   image-resolution: from-image;
 }
@@ -48,3 +48,4 @@ div {
 #form {
   text-align: center !important;
 }
+#information

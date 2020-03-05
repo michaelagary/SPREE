@@ -21,19 +21,10 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 def index():
     collection = mongo.db.SPREE
     SPREE = collection.find({})
-    return render_template('index.html', SPREE = SPREE)
+    return render_template('index.html')
 
 
 # CONNECT TO DB, ADD DATA
-
-@app.route('/add')
-def add():
-    # connect to the database
-    collection = mongo.db.SPREE
-    # insert new data
-    collection.items.insert({"item": "pants", "price": "17.99"})
-    # return a message to the user
-    return "item added"
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -76,21 +67,32 @@ def signup():
         return 'there is already a user with that email! try logging in'
     return render_template('signup.html')
 
-@app.route('/cardigan')
-def cardigan():
-    return render_template('cardigan.html')
-
 @app.route('/store')
 def store():
-    return render_template('store.html')
+    collection = mongo.db.items
+    # i did a query and thne turned it into a lsit of dictionaries
+    items = list(collection.find({}))
+    print("the items are ", items)
+    # query mongo for all items
+    # send list of items when rendering
+    return render_template('store.html', items = items)
 
-@app.route('/sweater')
-def sweater():
-    return render_template('sweater.html')
-
-@app.route('/lace-detail')
-def lacedetail():
-    return render_template('lace-detail.html')
+# GOAL: get all details about an item from Mongo and send it to build base page
+@app.route('/item', methods=['POST', 'GET'])
+def item():
+    item_selected = dict(request.form)
+    print("the information for the selected item is", item_selected)
+    name = item_selected["name"]
+    print(name)
+    collection = mongo.db.items
+    information = list(collection.find({"name": name}))
+    print(information)
+    # return 'page in progress'
+    return render_template('item.html', items = information)
+    # for the item selected by the user on the store page
+# get ID from previous page (store.html)
+# find in Mongo, store as item
+# return render_template('item.html', item = (result of findginkt the item in Mongo))
 
 @app.route('/admin', methods = ["GET", "POST"])
 def admin():
@@ -124,37 +126,29 @@ def new_item():
     message = "the item has been added to the store"
     return render_template('store.html', message = message)
 
-# THIS IS HOW FILTER WORKS https://www.geeksforgeeks.org/filter-in-python/
-# filter(function, sequence)
-# Parameters:
-# function: function that tests if each element of a
-# sequence true or not.
-# sequence: sequence which needs to be filtered, it can
-# be sets, lists, tuples, or containers of any iterators.
-# Returns:
-# returns an iterator that is already filtered.
+@app.route('/sort50')
+def sort50():
+    collection = mongo.db.items
+    items = collection.find({})
+    fifty_and_under = []
+    for item in items:
+        print(item["price"])
+        if float(item["price"]) <= 50 and float(item["price"]) >= 0:
+            fifty_and_under.append(item)
+            print("items $50 and under are, ", fifty_and_under)
+    return render_template('store.html', items = fifty_and_under)
 
-# THIS IS HOW TO CREATE A FILTER TO SORT THROUGH ITEMS BASED ON price
-# function that filters vowels
-# def fun(variable):
-#     letters = ['a', 'e', 'i', 'o', 'u']
-#     if (variable in letters):
-#         return True
-#     else:
-#         return False
-#
-# My practice version
-# def sort1(variable):
-# range = range(0,51.99)
+@app.route('/sort100')
+def sort100():
+    collection = mongo.db.items
+    items = collection.find({})
+    fifty_to_hundred = []
+    for item in items:
+        print(item["price"])
+        if float(item["price"]) <= 100 and float(item["price"]) >= 50:
+            fifty_to_hundred.append(item)
+            print("items $50 to $100 are, ", fifty_to_hundred)
+    return render_template('store.html', items = fifty_to_hundred)
 
-# def sort2(variable):
-# range = range(51.99,100.99)
-# # sequence
-# sequence = ['g', 'e', 'e', 'j', 'k', 's', 'p', 'r']
-#
-# # using filter function
-# filtered = filter(fun, sequence)
-#
-# print('The filtered letters are:')
-# for s in filtered:
-#     print(s)
+# next step is go to store and add jinja templating {{ list }}
+# so that when person decides to sort it displays items in that list

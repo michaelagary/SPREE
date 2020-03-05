@@ -11,25 +11,19 @@
         <a id = "store" href="/store" class="w3-button w3-bar-item"> store</a>
         <a id = "login" href="/login" class="w3-button w3-bar-item"> login</a>
         <a id = "admin" href="/admin" class="w3-button w3-bar-item"> administrator</a>
-        {% if session %} <a id = "/profile" href="/profile" class="w3-button w3-bar-item"> profile</a> {% endif %}
+        {% if session %} <a id = "profile" href="/profile" class="w3-button w3-bar-item"> profile</a> {% endif %}
       </nav>
       <h2>Browse all items now!</h2>
-      <a href="/cardigan">
-        <img src="https://lp2.hm.com/hmgoepprod?set=source[/5a/dc/5adc943a8dea472774dafbe8ee0bb388a44f6153.jpg],origin[dam],category[ladies_cardigansjumpers_cardigans],type[DESCRIPTIVESTILLLIFE],res[w],hmver[1]&call=url[file:/product/main]" alt="ribbed cardigan" width="200" height="200" >
-    </a>
-    <a href="/sweater">
-      <img src="https://lp2.hm.com/hmgoepprod?set=source[/07/90/079089e202ae48f1e3f254c3eece6c4ae49d2e73.jpg],origin[dam],category[ladies_cardigansjumpers_jumpers],type[DESCRIPTIVESTILLLIFE],res[w],hmver[1]&call=url[file:/product/main]" alt="ruffled ribbed sweater" width="200" height="200" >
-    </a>
-    <a href="/lace-detail">
-      <img src="https://lp2.hm.com/hmgoepprod?set=source[/f4/66/f466d380b9f8eecd7fc7c2cf9a091cbfa6e1cc42.jpg],origin[dam],category[ladies_cardigansjumpers_jumpers],type[DESCRIPTIVESTILLLIFE],res[w],hmver[1]&call=url[file:/product/main]" alt="lace-detailed sweater" width="200" height="200">
-    </a>
-    <a href="/hoodie">
-      <img src="https://lp2.hm.com/hmgoepprod?set=source[/6a/b5/6ab580d4bfaef83c907b1c90499b8bfdf9d017a2.jpg],origin[dam],category[ladies_hoodiesswetshirts_hoodies],type[DESCRIPTIVESTILLLIFE],res[w],hmver[1]&call=url[file:/product/main]" alt="hoodie" width="200" height="200">
-    </a>
-    <a href="/puff-sleved">
-      <img src="https://lp2.hm.com/hmgoepprod?set=source[/34/bc/34bcbf3136f65da6b4935f0cf72da3f33b2bfaab.jpg],origin[dam],category[ladies_tops_longsleeve],type[DESCRIPTIVESTILLLIFE],res[w],hmver[1]&call=url[file:/product/main]" alt="puff-sleved ribbed top" width="200" height="200">
-    </a>
-    <br>
+      <a  href="/store"> all items</a> <br>
+      <a  href="/sort50"> items up to $50</a> <br>
+      <a href="/sort100"> items between $50 and $100</a>
+      <br> <br>
+      <form action="/item", method="POST">
+        {% for item in items %}
+          <input type="radio" name="name" value="{{ item.name }}"> <img src="{{ item.image }}" width="200" height="200">
+        {% endfor %}
+          <input type="submit" value="view item">
+      </form>
     {{ message }}
     </body>
 </html>
