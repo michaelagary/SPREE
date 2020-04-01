@@ -6,27 +6,22 @@
       <link href="https://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise&display=swap" rel="stylesheet">
     </head>
     <body>
-      <!-- <nav class="w3-bar w3-black">
-        <a id = "home" href="/index" class="w3-button w3-bar-item"> home</a>
-        <a id = "store" href="/store" class="w3-button w3-bar-item"> store</a>
-        <a id = "login" href="/login" class="w3-button w3-bar-item"> login</a>
-        <a id = "admin" href="/admin" class="w3-button w3-bar-item"> administrator</a>
-        {% if session %} <a id = "/profile" href="/profile" class="w3-button w3-bar-item"> profile</a> {% endif %}
-      </nav> -->
       <nav class="w3-bar w3-black">
         <a id = "home" href="/index" class="w3-button w3-bar-item"> home</a>
         <a id = "store" href="/store" class="w3-button w3-bar-item"> store</a>
         <a id = "login" href="/login" class="w3-button w3-bar-item"> login</a>
         <a id = "admin" href="/admin" class="w3-button w3-bar-item"> administrator</a> </nav>
       <h1>Profile</h1>
-      <h2>You can view your favorites and requests here. </h2>
-        <!-- {% if session %}
-          <p> you are logged in </p>
-        {% endif %} -->
+      <h2>You can make requests here. </h2>
+      <form action="/requests" method="post">
+        <label for="requests">sumbit your requests here:</label><br>
+        <input type="text" name="requests" > <input type="submit" value="submit">
+        <br> <br> {{ message2 }} <br>
         {% if session %}
           <p> you are logged in with {{session['username']}} </p>
           <button type="button"><a href="/logout">logout</a></button>
         {% endif %}
-        <!-- this page will display favorites and requests -->
+
+</form>
     </body>
 </html>

@@ -13,18 +13,47 @@
       <nav class="pink">
         <a id="SPREE" href="/index"> SPREE</a>
       </nav>
-      <h2 id="loginn"> Add new items here.</h2>
+      <h5><center> Add new items here!</center></h5>
       <form  method="post" action="/new_item">
           <div class="row">
-            <div class="col s6" id="form">
-              <div class="col s6 white"> <input type="text" name="name"/> NAME</div>
-              <div class="col s6 white"> <input type="text" name="description"/> DESCRIPTION</div>
-              <div class="col s6 white"> <input type="text" name="price"/> PRICE</div>
-              <div class="col s6 white"> <input type="text" name="url"/> LINK TO ITEM</div>
-              <div class="col s6 white"> <input type="text" name="image"/> IMAGE ADDRESS</div>
+            <div class="col s4"></div>
+            <div class="col s4 white">
+              <label for="name"> NAME:</label>
+              <input type="text" name="name"/></div>
             </div>
           </div>
-            <input type="submit" value="enter" id="form"/>
+          <div class="row">
+            <div class="col s4"></div>
+            <div class="col s4 white">
+              <label for="description"> DESCRIPTION:</label>
+              <input type="text" name="description"/></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s4"></div>
+            <div class="col s4 white">
+              <label for="price"> PRICE:</label>
+              <input type="text" name="price"/></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s4"></div>
+            <div class="col s4 white">
+              <label for="url"> LINK TO ITEM:</label>
+              <input type="text" name="url"/></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s4"></div>
+            <div class="col s4 white">
+              <label for="image"> IMAGE ADDRESS:</label>
+              <input type="text" name="image"/></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s4"></div>
+            <div class="col s4 center">
+            <input type="submit" value="enter"> </div> </div>
       </form>
     </body>
 </html>

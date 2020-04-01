@@ -28,14 +28,20 @@ def index():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    collection = mongo.db.SPREE
-    users = collection.users
-    # login_user = collection.find_one({"email" : request.form["email"]})
+    collection = mongo.db.users
     if request.method == 'POST':
-        session['username'] = request.form['email']
-        # session['password'] == request.form['password']
-        return redirect(url_for('profile'))
-            #profile page will display user's favroites and requests
+        login_user = collection.find_one({"email" : request.form["email"]})
+        print(login_user)
+        if login_user !=None:
+            if  login_user['password1'] == request.form['password']:
+                session['username'] = request.form['email']
+                print(login_user['password1'])
+                print(request.form['password'])
+                return redirect(url_for('profile'))
+            else:
+                return "incorect password, please try again."
+        else:
+            return "an account with that email does not exist. sign up!"
     else:
         return render_template('login.html')
 
@@ -87,12 +93,7 @@ def item():
     collection = mongo.db.items
     information = list(collection.find({"name": name}))
     print(information)
-    # return 'page in progress'
     return render_template('item.html', items = information)
-    # for the item selected by the user on the store page
-# get ID from previous page (store.html)
-# find in Mongo, store as item
-# return render_template('item.html', item = (result of findginkt the item in Mongo))
 
 @app.route('/admin', methods = ["GET", "POST"])
 def admin():
@@ -152,3 +153,13 @@ def sort100():
 
 # next step is go to store and add jinja templating {{ list }}
 # so that when person decides to sort it displays items in that list
+
+@app.route('/requests', methods = ["GET", "POST"])
+def requests():
+    collection = mongo.db.requests
+    wishh = dict(request.form)
+    wish = wishh["requests"]
+    print("the request is ", wish)
+    collection.insert({"request": wish})
+    message2 = "thank you! administrators will handle your request as soon as possible."
+    return render_template('profile.html', message2 = message2)

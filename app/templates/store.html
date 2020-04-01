@@ -14,13 +14,13 @@
         {% if session %} <a id = "profile" href="/profile" class="w3-button w3-bar-item"> profile</a> {% endif %}
       </nav>
       <h2>Browse all items now!</h2>
-      <a  href="/store"> all items</a> <br>
-      <a  href="/sort50"> items up to $50</a> <br>
-      <a href="/sort100"> items between $50 and $100</a>
+      <a  href="/sort50"> items less than $50</a> <br>
+      <a href="/sort100"> items $50 to $100</a>
+      <p> if you filter the page, you can go back to viewing all items by clicking store!</p>
       <br> <br>
       <form action="/item", method="POST">
         {% for item in items %}
-          <input type="radio" name="name" value="{{ item.name }}"> <img src="{{ item.image }}" width="200" height="200">
+          <input type="radio" name="name" value="{{ item.name }}"> <img src="{{ item.image }}" width="150" height="150">
         {% endfor %}
           <input type="submit" value="view item">
       </form>
