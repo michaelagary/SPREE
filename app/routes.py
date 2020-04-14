@@ -63,15 +63,22 @@ def signup():
     if request.method == 'POST':
         existing_user = users.find_one({'email' : request.form['email']})
         print("the request method is post", existing_user)
+        #if the user does not exist
         if existing_user is None:
-            users.insert({'email' : request.form['email'], 'password1': request.form['password1'], 'password2': request.form['password2']})
+            #if their password and re-entered password match
             if request.form['password1'] == request.form['password2']:
+                #add their information to the database
+                users.insert({'email' : request.form['email'], 'password1': request.form['password1'], 'password2': request.form['password2']})
+                #their email for account is the email they entered when signing up
                 session['username'] = request.form['email']
-                return redirect('/store')
-            else:
+                #send them to the store
+                return redirect(url_for('store'))
+            else: #if the password and re-entered password don't match
                 return 'the two passwords must match!'
-        return 'there is already a user with that email! try logging in'
-    return render_template('signup.html')
+        else: #if user exists
+            return 'there is already a user with that email! try logging in'
+    else: #if person has not submit form, they remain on page
+        return render_template('signup.html')
 
 @app.route('/store')
 def store():
@@ -104,7 +111,7 @@ def admin():
     else:
         code2 = user_info["code"]
         if code2 == code:
-            return render_template('new-item.html')
+            return render_template('new_item.html')
         else:
             # flash("the code you entered is inccorect")
             return redirect('/index')
@@ -124,8 +131,9 @@ def new_item():
     image = user_info["image"]
     print("the link to the item's image is: " + image)
     collection.insert({"name": name, "description": description, "price": price, "url": url, "image": image})
-    message = "the item has been added to the store"
-    return render_template('store.html', message = message)
+    #You're rendering the store.html template without querying the db for all items in the store and passing that as a jinja variable.
+    #You probably need to copy a bit of your store route - the part where you query for all items and pass as var to the store.html page
+    return redirect('/store')
 
 @app.route('/sort50')
 def sort50():
